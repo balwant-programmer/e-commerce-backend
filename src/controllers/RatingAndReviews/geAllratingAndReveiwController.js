@@ -1,5 +1,5 @@
 import CreateProject from "../../models/createprojectSchem.js";
-import { Review } from "../../models/ratingAndReviewShema.js";
+import { Review } from "../../models/RatingAndReviewShema.js";
 import { User } from "../../models/UserAutSchema.js";
 
 const getallRatingAndReview = async (req, res) => {
