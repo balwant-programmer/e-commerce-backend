@@ -16,12 +16,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: [
-      "http://192.168.1.18:5173",
-      "http://localhost:5173",
-      "http://192.168.1.18:5174",
-      "http://192.168.43.86:5173",
-    ],
+    origin: [process.env.FRONTEND_URL, process.env.LOCAL_URL],
     credentials: true,
   })
 );
