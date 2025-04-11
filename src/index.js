@@ -8,31 +8,39 @@ import userroutes from "./routes/userRoutes.js";
 import cookieParser from "cookie-parser";
 import productRatingroutes from "./routes/RatingAndReview.js";
 dotenv.config();
+
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-//-----cors ..
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://guileless-basbousa-e6b7f3.netlify.app",
+];
+
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
-
-// ---------- routes ---------
 app.use("/api/v1/product", createproductroutes);
 app.use("/api/v1/category", categoryroutes);
 app.use("/api/v1/user", userroutes);
 app.use("/api/v1/", productRatingroutes);
 
 const port = process.env.PORT || 3000;
-app.listen(port, async (error) => {
-  if (error) return;
+app.listen(port, async () => {
   try {
     await connectDb();
-    console.log(`Server is running on port ${port}`);
+    console.log(`✅ Server is running on port ${port}`);
   } catch (error) {
-    console.log("error while db connecion !");
+    console.log("❌ Error while DB connection", error);
   }
 });
