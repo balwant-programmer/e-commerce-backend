@@ -1,5 +1,4 @@
-import { Review } from "../../models/ratingAndReviewShema.js";
-
+import { Review } from "../../models/RatingAndReviewShema.js";
 const ratingOfSpecificUSer = async (req, res) => {
   try {
     const { productId } = req.params;
