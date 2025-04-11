@@ -28,7 +28,7 @@ const login = async (req, res) => {
     const token = generateToken(payload);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       samesite: "none",
       maxAge: 60 * 60 * 1000,
     });
@@ -180,7 +180,7 @@ export const sendOtp = async (req, res) => {
       const saveOtp = new Otp({
         email,
         otp,
-        expireAt: Date.now() + 180000, 
+        expireAt: Date.now() + 180000,
       });
 
       await saveOtp.save();
