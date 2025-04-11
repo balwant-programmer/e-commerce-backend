@@ -1,5 +1,5 @@
 import CreateProject from "../../models/createprojectSchem.js";
-import { Review } from "../../models/ratingAndReviewShema.js";
+import { Review } from "../../models/RatingAndReviewShema.js";
 const CreateRatingAndReviews = async (req, res) => {
   try {
     const user = req.user._id;
@@ -38,7 +38,7 @@ const CreateRatingAndReviews = async (req, res) => {
         review,
         productId,
       });
-       await CreateProject?.updateOne(
+      await CreateProject?.updateOne(
         { _id: productId },
         { $addToSet: { rating: newReview._id } }
       );
