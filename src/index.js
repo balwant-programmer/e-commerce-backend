@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://guileless-basbousa-e6b7f3.netlify.app",
+  "https://snapshop-shop.netlify.app/",
 ];
 
 app.use(
